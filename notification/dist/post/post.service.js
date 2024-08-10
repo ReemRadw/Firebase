@@ -20,12 +20,13 @@ let PostService = class PostService {
     }
     async create(createPostDto) {
         const { title, content, published, authorId } = createPostDto;
+        const aud = +authorId;
         const newPost = await this.prisma.post.create({
             data: {
                 title,
                 content,
                 published,
-                authorId,
+                aud,
             },
         });
         const user = await this.prisma.user.findUnique({
@@ -35,12 +36,12 @@ let PostService = class PostService {
         });
         const payload = {
             notification: {
-                title: 'New Post',
-                body: 'You have received a new post.',
+                title: "New Post",
+                body: "You have received a new post.",
             },
             data: {
-                userId: '12345',
-                action: 'openChat',
+                userId: "12345",
+                action: "openChat",
             },
         };
         await this.firebaseService.sendNotification([user.fcm_token], payload);

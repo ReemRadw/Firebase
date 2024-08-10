@@ -1,6 +1,6 @@
-import { CreatePostDto } from './dto/create-post.dto';
-import { PrismaService } from '../prisma.service';
-import { FirebaseService } from '../fire_base.service';
+import { CreatePostDto } from "./dto/create-post.dto";
+import { PrismaService } from "../prisma.service";
+import { FirebaseService } from "../fire_base.service";
 export declare class PostService {
     private prisma;
     private readonly firebaseService;
